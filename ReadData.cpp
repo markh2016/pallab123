@@ -66,7 +66,7 @@ ReadData::~ReadData(){
 
 /* gets the file name that we want to process */
 
-void ReadData::setFileName(void)
+void ReadData::setFileName()
 {
   
    cout<<"Please enter name of  file to process : "  ; 
@@ -75,7 +75,7 @@ void ReadData::setFileName(void)
    cout << endl << "filename entered was : " << _filename  << endl;
 }
 
-string ReadData::getFileName(void)
+string ReadData::getFileName()
 {
    return this->_filename;
 }

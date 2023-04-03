@@ -36,8 +36,8 @@ public :
     uint countFileLines(string f ) ; // counts the number of lines in a given file
     
     /* setter and getter methods */
-    void setFileName(void) ; //sets the private instance variable filename from stdin 
-    string getFileName(void) ; // gets instance private  variable  filename 
+    void setFileName() ; //sets the private instance variable filename from stdin 
+    string getFileName() ; // gets instance private  variable  filename 
 
 
    

@@ -6,7 +6,8 @@
 #include <dirent.h>
 #include <unistd.h>
 #include <limits.h>
-#include<fstream>
+#include <fstream>
+#include <memory>
 
 
 
@@ -106,13 +107,13 @@ int main(int argc, char *argv[]){
 
  cout<< "Program to validate data" << endl ;
  // create instance of class 
- ReadData m_data ;
+ unique_ptr<ReadData> ptr(new ReadData()) ;
  // call method for reading file 
- m_data.setFileName() ;
+ ptr->setFileName() ;
 
  // count number of lines in that file 
 
- m_data.countFileLines(m_data.getFileName()) ; 
+ ptr->countFileLines(ptr->getFileName()) ; 
 
 
  return 0 ;
@@ -124,7 +125,7 @@ int main(int argc, char *argv[]){
 
 void readfilesNames(){
 
-char cwd[PATH_MAX];
+char cwd[PATH_MAX]; // C MACRO define 4092  as size 
 
 DIR *d;
     struct dirent *dir;

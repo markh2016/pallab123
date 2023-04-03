@@ -1,0 +1,41 @@
+name: Build
+on:
+  push:
+    branches:
+      - master
+      - main
+  pull_request:
+    branches:
+      - master
+      - main
+jobs:
+    build:
+        name: Build ${{ matrix.os }}
+        runs-on: ${{ matrix.os }}
+        strategy:
+          fail-fast: false
+          matrix:
+              os: [ubuntu-latest, macos-latest]
+        steps:
+          - name: Git Checkout
+            uses: actions/checkout@v2
+            with:
+              fetch-depth: 0
+          - name: Create Build Directory
+            run: |
+              mkdir build
+              cd build
+              mkdir release
+              mkdir debug
+          - name: Configure
+            run: |
+              cd build/release
+              cmake -G"Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE ../../
+              cd ../debug
+              cmake -G"Unix Makefiles" -DCMAKE_BUILD_TYPE=DEBUG ../../
+          - name: Build
+            run: |
+              cd build/release
+              cmake --build .
+              cd ../debug
+              cmake --build .
